@@ -1,0 +1,28 @@
+# Java / Maven build output
+target/
+*.class
+
+# Node / React
+node_modules/
+storefront/dist/
+storefront/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS junk
+.DS_Store
+
+# Environment/secrets (none currently committed, but guard against future ones)
+.env
+.env.local
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+
+# Docker
+docker-compose.override.yml

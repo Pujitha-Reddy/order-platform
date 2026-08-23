@@ -1,0 +1,15 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: fraud-check-service
+  grpc:
+    server:
+      port: 9091
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

@@ -1,0 +1,35 @@
+.hero-banner {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 0.75rem;
+  max-width: 1400px;
+  margin: 1.25rem auto 0;
+  padding: 0 1.5rem;
+  overflow-x: auto;
+}
+@media (max-width: 1000px) {
+  .hero-banner { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+}
+
+.hero-tile {
+  border-radius: 6px;
+  padding: 1.25rem;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #0f1111;
+}
+.hero-tile--dark { color: #fff; }
+
+.hero-tile__sub {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.hero-tile h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+}

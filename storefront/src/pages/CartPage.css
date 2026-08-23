@@ -1,0 +1,124 @@
+.cart-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.cart-page h1 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.cart-empty {
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 4rem;
+}
+.cart-empty-link {
+  display: block;
+  text-align: center;
+  color: var(--accent);
+  margin-top: 0.5rem;
+}
+
+.cart-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: 56px 1fr 60px 80px auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.cart-line img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-line__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.cart-line__name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cart-line__price {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.cart-line input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+.cart-line__subtotal {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+}
+
+.cart-line__remove {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.cart-line__remove:hover { color: var(--danger); }
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 1rem;
+}
+.cart-summary__total {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cart-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+.cart-checkout {
+  width: 100%;
+  background: linear-gradient(to bottom, #f7dfa5, var(--accent));
+  color: #0f1111;
+  border: 1px solid #a88734;
+  border-radius: 20px;
+  padding: 0.75rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+.cart-checkout:hover { background: linear-gradient(to bottom, #f5d78b, #e88b00); }
+.cart-checkout:disabled { opacity: 0.6; }

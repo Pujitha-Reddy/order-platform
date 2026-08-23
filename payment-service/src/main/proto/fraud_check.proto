@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.orderplatform.fraudcheckservice.grpc";
+option java_outer_classname = "FraudCheckProto";
+
+package fraudcheck;
+
+service FraudCheckService {
+  rpc CheckFraud (FraudCheckRequest) returns (FraudCheckResponse);
+}
+
+message FraudCheckRequest {
+  string order_id = 1;
+  string customer_id = 2;
+  double amount = 3;
+}
+
+message FraudCheckResponse {
+  string order_id = 1;
+  bool approved = 2;
+  double risk_score = 3;
+  string reason = 4;
+}

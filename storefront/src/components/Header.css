@@ -1,0 +1,116 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header__top {
+  background: var(--header-bg);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1.25rem;
+}
+
+.site-header__logo {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  white-space: nowrap;
+  padding: 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.site-header__logo:hover { border-color: #fff; }
+.site-header__logo-accent { color: var(--accent); }
+
+.site-header__search {
+  flex: 1;
+  display: flex;
+  max-width: 640px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.site-header__search input {
+  flex: 1;
+  border: none;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  outline: none;
+}
+.site-header__search button {
+  background: var(--accent);
+  border: none;
+  padding: 0 0.9rem;
+  display: flex;
+  align-items: center;
+  color: #0f1111;
+}
+.site-header__search button:hover { background: #e88b00; }
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-left: auto;
+}
+
+.site-header__account, .site-header__orders {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+}
+.site-header__account:hover, .site-header__orders:hover { border-color: #fff; }
+.site-header__account-greeting { color: #ccc; font-size: 0.72rem; }
+.site-header__account-link { font-weight: 700; }
+button.site-header__account { cursor: pointer; }
+
+.site-header__cart {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.3rem;
+  color: #fff;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.site-header__cart:hover { border-color: #fff; }
+.site-header__cart-label { font-weight: 700; font-size: 0.9rem; }
+
+.site-header__cart-badge {
+  position: absolute;
+  top: -2px;
+  left: 14px;
+  background: var(--accent);
+  color: #0f1111;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  line-height: 1.3;
+}
+
+.site-header__bottom {
+  background: var(--header-bg-light);
+  padding: 0.5rem 1.25rem;
+}
+.site-header__nav {
+  display: flex;
+  gap: 1.25rem;
+}
+.site-header__nav a {
+  color: #fff;
+  font-size: 0.82rem;
+  padding: 0.2rem 0.3rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+.site-header__nav a:hover { border-color: #fff; }
