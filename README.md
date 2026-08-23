@@ -2,27 +2,27 @@
 
 A full event-driven e-commerce platform built from scratch: 5 Spring Boot microservices choreographed over Kafka, a gRPC-based fraud check, Redis-backed live order tracking over WebSocket, JWT authentication, and a React storefront styled after a major e-commerce site.
 
-Built solo, end to end, as a deep dive into distributed systems patterns — not a tutorial clone. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
+Built end to end, as a deep dive into distributed systems patterns, not a tutorial clone. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
 
 ## What it does
 
 A customer browses a real product catalog (160 items, real photos, real prices/ratings), adds multiple items to a cart, and checks out. Behind that one click:
 
 1. `order-service` validates the cart, computes the total server-side, and publishes `OrderCreatedEvent`
-2. `inventory-service` atomically reserves stock for **every** item in the order — all-or-nothing, with rollback safety
+2. `inventory-service` atomically reserves stock for **every** item in the order, all-or-nothing, with rollback safety
 3. `payment-service` makes a **synchronous gRPC call** to `fraud-check-service` for a real-time risk score, then "charges" the order
 4. `order-service` closes the loop, marking the order `COMPLETED` or `CANCELLED`
 5. `notification-service` watches every event across the whole saga and pushes live updates over WebSocket
 
-The customer sees this happen in real time on the order tracking page — an actual event log, not a spinner.
+The customer sees this happen in real time on the order tracking page, an actual event log, not a spinner.
 
 ## Architecture
 
-- **Choreography, not orchestration** — no service directs the saga centrally; each service reacts independently to events it cares about.
-- **PostgreSQL** — one database per service (`order_db`, `inventory_db`, `payment_db`), never shared.
-- **Kafka** — single-broker KRaft mode locally, 3 topics, 3 partitions each.
-- **gRPC** — the one synchronous call in an otherwise fully async system.
-- **Redis** — TTL-based live-status cache, not a system of record.
+- **Choreography, not orchestration**: no service directs the saga centrally; each service reacts independently to events it cares about.
+- **PostgreSQL**: one database per service (`order_db`, `inventory_db`, `payment_db`), never shared.
+- **Kafka**: single-broker KRaft mode locally, 3 topics, 3 partitions each.
+- **gRPC**: the one synchronous call in an otherwise fully async system.
+- **Redis**: TTL-based live-status cache, not a system of record.
 
 Flow: `order-service` → Kafka `order.events` → `inventory-service` → Kafka `inventory.events` → `payment-service` (⇄ gRPC → `fraud-check-service`) → Kafka `payment.events` → back to `order-service`. `notification-service` listens to all three topics in parallel and pushes to the frontend over WebSocket.
 
@@ -75,14 +75,12 @@ npm run dev
 
 Documented honestly rather than hidden:
 
-- **Client-supplied unit prices** — `order-service` trusts prices sent by the client rather than validating against `inventory-service`'s catalog. A real system would never do this; it's flagged here as a deliberate scope boundary, not an oversight.
-- **No compensating transaction for post-reservation payment failure** — if payment fails after inventory was reserved, that stock is never released back. `inventory-service` would need to also listen to `payment.events` to fully close this gap.
-- **Hardcoded JWT secret** in `application.yml` — must be an environment variable or secrets-manager value in any real deployment.
-- **No API gateway** — the frontend calls each backend service's port directly, exposing real service boundaries instead of hiding them behind a single entry point.
+- **Client-supplied unit prices** `order-service` trusts prices sent by the client rather than validating against `inventory-service`'s catalog. A real system would never do this; it's flagged here as a deliberate scope boundary, not an oversight.
+- **No compensating transaction for post-reservation payment failure**, if payment fails after inventory was reserved, that stock is never released back. `inventory-service` would need to also listen to `payment.events` to fully close this gap.
+- **Hardcoded JWT secret** in `application.yml`, must be an environment variable or secrets-manager value in any real deployment.
+- **No API gateway**, the frontend calls each backend service's port directly, exposing real service boundaries instead of hiding them behind a single entry point.
 - **Product images** are sourced by automated keyword search against a stock-photo API; a portion of the auto-generated catalog (~160 products) have imperfect or generic matches, particularly for brand-heavy product names.
-- **"Free delivery" / delivery-date copy** on the storefront is presentational only — there is no logistics or shipping system.
-- **Not deployed live** — the full stack requires an always-on server for Kafka specifically; no free-tier cloud service offers this. Deployment was pursued (Oracle Cloud's Always Free ARM tier) and blocked by account-level region/capacity limits, not a technical blocker in the code itself. The system is fully container-ready (`docker-compose.full.yml`) for whenever that's resolved.
-- **Cart state is in-memory only** on the frontend — resets on page refresh, not persisted server-side.
+- **Cart state is in-memory only** on the frontend, resets on page refresh, not persisted server-side.
 
 ## Project structure
 
