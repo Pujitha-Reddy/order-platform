@@ -4,6 +4,10 @@ A full event-driven e-commerce platform built from scratch: 5 Spring Boot micros
 
 Built end to end, as a deep dive into distributed systems patterns, not a tutorial clone. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
 
+
+https://github.com/user-attachments/assets/ce6cd4fe-1717-47d9-bbd1-5b04c9c2e458
+
+
 ## What it does
 
 A customer browses a real product catalog (160 items, real photos, real prices/ratings), adds multiple items to a cart, and checks out. Behind that one click:
