@@ -21,10 +21,8 @@ public class OrderEventsConsumer {
     private final OrderStatusCacheService cacheService;
     private final OrderStatusWebSocketHandler webSocketHandler;
 
-    @KafkaListener(
-            topics = {"order.events", "inventory.events", "payment.events"},
-            groupId = "${spring.kafka.consumer.group-id}"
-    )
+    @KafkaListener(topics = { "order.events", "inventory.events",
+            "payment.events" }, groupId = "${spring.kafka.consumer.group-id}")
     public void consume(String rawJson, org.apache.kafka.clients.consumer.ConsumerRecord<String, String> record) {
         try {
             JsonNode node = redisObjectMapper.readTree(rawJson);
@@ -51,9 +49,18 @@ public class OrderEventsConsumer {
     private OrderStatusUpdate handleOrderCreated(JsonNode node) {
         String orderId = node.get("orderId").asText();
         String customerId = node.get("customerId").asText();
-        String productId = node.get("productId").asText();
         BigDecimal amount = new BigDecimal(node.get("totalAmount").asText());
-        return OrderStatusUpdate.initial(orderId, customerId, productId, amount);
+
+        JsonNode items = node.get("items");
+        String productSummary = "1 item";
+        if (items != null && items.isArray()) {
+            int count = items.size();
+            productSummary = count == 1
+                    ? items.get(0).get("productId").asText()
+                    : count + " items";
+        }
+
+        return OrderStatusUpdate.initial(orderId, customerId, productSummary, amount);
     }
 
     private OrderStatusUpdate handleInventoryEvent(JsonNode node) {
