@@ -14,7 +14,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 
-Built end to end, as a deep dive into distributed systems patterns. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
+Built end to end, as a deep dive into distributed systems patterns. Every architectural decision, bug, and tradeoff below was hit and worked through directly. Watch the full demo below.
 
 [![Watch the full demo](https://img.youtube.com/vi/_Mx7Nm4Wc5U/maxresdefault.jpg)](https://www.youtube.com/watch?v=_Mx7Nm4Wc5U)
 
