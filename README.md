@@ -1,12 +1,26 @@
-# Order Platform
+<div align="center">
 
-A full event-driven e-commerce platform built from scratch: 5 Spring Boot microservices choreographed over Kafka, a gRPC-based fraud check, Redis-backed live order tracking over WebSocket, JWT authentication, and a React storefront styled after a major e-commerce site.
+# 🛒 Order Platform
 
-Built end to end, as a deep dive into distributed systems patterns, not a tutorial clone. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
+**A full event-driven e-commerce platform** — 5 Spring Boot microservices choreographed over Kafka, a gRPC-based fraud check, Redis-backed live order tracking over WebSocket, JWT authentication, and a React storefront styled after a major e-commerce site.
 
+![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)
+![gRPC](https://img.shields.io/badge/gRPC-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+
+Built end to end, as a deep dive into distributed systems patterns — not a tutorial clone. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
+
+[![Watch the full demo](https://img.youtube.com/vi/_Mx7Nm4Wc5U/maxresdefault.jpg)](https://www.youtube.com/watch?v=_Mx7Nm4Wc5U)
 
 https://github.com/user-attachments/assets/ce6cd4fe-1717-47d9-bbd1-5b04c9c2e458
 
+</div>
 
 ## What it does
 
