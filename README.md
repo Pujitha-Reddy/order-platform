@@ -2,7 +2,7 @@
 
 # 🛒 Order Platform
 
-**A full event-driven e-commerce platform** — 5 Spring Boot microservices choreographed over Kafka, a gRPC-based fraud check, Redis-backed live order tracking over WebSocket, JWT authentication, and a React storefront styled after a major e-commerce site.
+**A full event-driven e-commerce platform**, 5 Spring Boot microservices choreographed over Kafka, a gRPC-based fraud check, Redis-backed live order tracking over WebSocket, JWT authentication, and a React storefront styled after a major e-commerce site.
 
 ![Java](https://img.shields.io/badge/Java_21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
@@ -14,11 +14,10 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 
-Built end to end, as a deep dive into distributed systems patterns — not a tutorial clone. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
+Built end to end, as a deep dive into distributed systems patterns. Every architectural decision, bug, and tradeoff below was hit and worked through directly.
 
 [![Watch the full demo](https://img.youtube.com/vi/_Mx7Nm4Wc5U/maxresdefault.jpg)](https://www.youtube.com/watch?v=_Mx7Nm4Wc5U)
 
-https://github.com/user-attachments/assets/ce6cd4fe-1717-47d9-bbd1-5b04c9c2e458
 
 </div>
 
@@ -42,7 +41,7 @@ The customer sees this happen in real time on the order tracking page, an actual
 - **gRPC**: the one synchronous call in an otherwise fully async system.
 - **Redis**: TTL-based live-status cache, not a system of record.
 
-Flow: `order-service` → Kafka `order.events` → `inventory-service` → Kafka `inventory.events` → `payment-service` (⇄ gRPC → `fraud-check-service`) → Kafka `payment.events` → back to `order-service`. `notification-service` listens to all three topics in parallel and pushes to the frontend over WebSocket.
+Flow: `order-service` - Kafka `order.events` - `inventory-service` - Kafka `inventory.events` - `payment-service` (⇄ gRPC - `fraud-check-service`) - Kafka `payment.events` - back to `order-service`. `notification-service` listens to all three topics in parallel and pushes to the frontend over WebSocket.
 
 ## Stack
 
